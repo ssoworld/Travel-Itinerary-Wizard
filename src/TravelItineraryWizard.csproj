@@ -2,11 +2,23 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="TravelItineraryWizard_test\**" />
+    <EmbeddedResource Remove="TravelItineraryWizard_test\**" />
+    <None Remove="TravelItineraryWizard_test\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="ItineraryTests.cs" />
+    <Compile Remove="UnitTest1.cs" />
+    <Compile Remove="Usings.cs" />
+  </ItemGroup>
 
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Interop.Excel">

@@ -28,12 +28,30 @@
       /// </summary>
       private void InitializeComponent()
       {
-         this.components = new System.ComponentModel.Container();
+         this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
+         this.SuspendLayout();
+         // 
+         // monthCalendar1
+         // 
+         this.monthCalendar1.Location = new System.Drawing.Point(18, 18);
+         this.monthCalendar1.Name = "monthCalendar1";
+         this.monthCalendar1.TabIndex = 0;
+         // 
+         // Form1
+         // 
+         this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
          this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
          this.ClientSize = new System.Drawing.Size(800, 450);
+         this.Controls.Add(this.monthCalendar1);
+         this.Name = "Form1";
          this.Text = "Form1";
+         this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+         this.ResumeLayout(false);
+
       }
 
       #endregion
+
+      private MonthCalendar monthCalendar1;
    }
 }

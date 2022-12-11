@@ -12,10 +12,16 @@ namespace TravelItineraryWizard
 
    public partial class Form1 : Form
    {
+      Itinerary itin;
       public Form1()
       {
-         Itinerary it = Itinerary.instance;
+         itin = Itinerary.instance;
          InitializeComponent();
+      }
+
+      private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+      {
+         itin.Close();
       }
    }
 }

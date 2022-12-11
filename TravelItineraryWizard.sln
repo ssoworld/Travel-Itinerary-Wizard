@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelItineraryWizard", "src\TravelItineraryWizard.csproj", "{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelItineraryWizard_test", "src\TravelItineraryWizard_test\TravelItineraryWizard_test.csproj", "{A4C1FD79-A83E-42B4-8483-DFA82AF13BE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4C1FD79-A83E-42B4-8483-DFA82AF13BE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4C1FD79-A83E-42B4-8483-DFA82AF13BE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4C1FD79-A83E-42B4-8483-DFA82AF13BE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4C1FD79-A83E-42B4-8483-DFA82AF13BE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
