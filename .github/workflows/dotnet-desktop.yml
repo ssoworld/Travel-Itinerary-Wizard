@@ -87,6 +87,12 @@ jobs:
         excludes: '[program]*,[test]test.*'
         threshold: 80
 
+   - name: ReportGenerator
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
+      with:
+         reports: src/coverage.cobertura.xml
+         targetdir: coveragereport
+
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
