@@ -1,0 +1,2 @@
+dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:ExcludeByAttribute="CompilerGenerated"
+reportgenerator -reports:"XUnit.Coverlet.MSBuild\coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html

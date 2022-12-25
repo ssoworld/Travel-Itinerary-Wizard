@@ -1,5 +1,7 @@
 namespace TravelItineraryWizard
 {
+   using System.Diagnostics.CodeAnalysis;
+
    partial class Form1
    {
       /// <summary>
@@ -11,6 +13,7 @@ namespace TravelItineraryWizard
       /// Clean up any resources being used.
       /// </summary>
       /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+      [ExcludeFromCodeCoverage]
       protected override void Dispose(bool disposing)
       {
          if (disposing && (components != null))
@@ -26,6 +29,7 @@ namespace TravelItineraryWizard
       /// Required method for Designer support - do not modify
       /// the contents of this method with the code editor.
       /// </summary>
+      [ExcludeFromCodeCoverage]
       private void InitializeComponent()
       {
          this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();

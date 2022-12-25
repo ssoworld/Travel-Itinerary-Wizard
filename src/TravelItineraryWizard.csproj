@@ -9,18 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="TravelItineraryWizard_test\**" />
-    <EmbeddedResource Remove="TravelItineraryWizard_test\**" />
-    <None Remove="TravelItineraryWizard_test\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Remove="ItineraryTests.cs" />
-    <Compile Remove="UnitTest1.cs" />
-    <Compile Remove="Usings.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Open-XML-SDK" Version="2.9.1" />
   </ItemGroup>
 
