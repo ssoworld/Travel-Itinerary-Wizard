@@ -25,9 +25,7 @@ namespace TravelItineraryWizard
       public DateTime EndDate { get => endDate; set => endDate = value; }
       public static Itinerary Instance { get => _lazy.Value; }
 
-      private Itinerary()
-      {;
-      }
+      private Itinerary() {;}
 
       public int Nights()
       {
