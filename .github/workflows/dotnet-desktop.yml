@@ -90,7 +90,7 @@ jobs:
     - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
-         reports: src\coverage.cobertura.xml
+         reports: coverage.cobertura.xml
          targetdir: coveragereport
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
