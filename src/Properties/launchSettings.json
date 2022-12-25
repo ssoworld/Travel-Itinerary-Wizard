@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "TravelItineraryWizard": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}
