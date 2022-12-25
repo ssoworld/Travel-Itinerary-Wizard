@@ -85,9 +85,9 @@ jobs:
         output: 'coverage.cobertura.xml'
         outputFormat: 'cobertura'
         excludes: '[program]*,[test]test.*'
-        threshold: 80
+        threshold: 80 
 
-   - name: ReportGenerator
+    - name: ReportGenerator
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
          reports: src/coverage.cobertura.xml
