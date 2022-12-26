@@ -84,7 +84,7 @@ jobs:
     - name: HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
-         reports: $env:Test_Project_Base\coverage.cobertura.xml
+         reports: ${{ env:Test_Project_Base }}\coverage.cobertura.xml
          targetdir: coveragereport
 
     - name: Code Coverage Report
