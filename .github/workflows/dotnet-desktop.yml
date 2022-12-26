@@ -84,13 +84,13 @@ jobs:
     - name: HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
-         reports: ${{ env:Test_Project_Base }}\coverage.cobertura.xml
+         reports: XUnit.Coverlet.Collector\coverage.cobertura.xml
          targetdir: coveragereport
 
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: $env:Test_Project_Base/**/coverage.cobertura.xml
+        filename: XUnit.Coverlet.Collector/**/coverage.cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
