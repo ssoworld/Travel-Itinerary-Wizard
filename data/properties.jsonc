@@ -1,0 +1,7 @@
+{
+   "home-tax-rate": 0.055,
+   "boarding": {
+      "location": "Family Pet Hospital",
+      "base-rate": 31.75
+   }
+}

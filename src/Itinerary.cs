@@ -1,12 +1,7 @@
 namespace TravelItineraryWizard
 {
    using System;
-   using System.Collections.Generic;
-   using System.Linq;
-   using System.Text;
-   using System.Threading.Tasks;
    using System.Text.Json;
-   using System.Text.Json.Serialization;
 
    public sealed class Itinerary
    {
@@ -15,23 +10,18 @@ namespace TravelItineraryWizard
          ReadCommentHandling = JsonCommentHandling.Skip,
          AllowTrailingCommas = true,
       };
-      
-      private DateTime startDate;
-      private DateTime endDate;
-
       private static Lazy<Itinerary> _lazy = new Lazy<Itinerary>(() => new Itinerary());
 
-      public DateTime StartDate { get => startDate; set => startDate = value; }
-      public DateTime EndDate { get => endDate; set => endDate = value; }
+      public DateTime StartDate { get; set; }
+      public DateTime EndDate { get; set; }
       public static Itinerary Instance { get => _lazy.Value; }
 
       private Itinerary() {  }
 
       public int Nights()
       {
-         double nights = (endDate - startDate).TotalDays;
+         double nights = (EndDate - StartDate).TotalDays;
          return (int)nights;
       }
-
    }
 }
