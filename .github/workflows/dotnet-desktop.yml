@@ -79,7 +79,7 @@ jobs:
 
     # Execute all unit tests in the solution, collecting code coverage
     - name: Execute unit tests
-      runs: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
 
     - name: HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
@@ -106,7 +106,7 @@ jobs:
       with:
         recreate: true
         path: code-coverage-results.md
-        
+
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Restore the application
       run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
