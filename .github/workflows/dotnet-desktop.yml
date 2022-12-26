@@ -84,7 +84,7 @@ jobs:
     - name: HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
-         reports: ..\XUnit.Coverlet.Collector\**\coverage.cobertura.xml
+         reports: ..\XUnit.Coverlet.Collector\TestResults\**\coverage.cobertura.xml
          targetdir: coveragereport
 
     - name: Code Coverage Report
