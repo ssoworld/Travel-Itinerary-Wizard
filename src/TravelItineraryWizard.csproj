@@ -12,4 +12,8 @@
     <PackageReference Include="Open-XML-SDK" Version="2.9.1" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y $(ProjectDir)..\data\properties.jsonc $(ProjectDir)$(OutDir)&#xD;&#xA;xcopy /y $(ProjectDir)..\data\air_travel.jsonc $(ProjectDir)$(OutDir)&#xD;&#xA;" />
+  </Target>
+
 </Project>

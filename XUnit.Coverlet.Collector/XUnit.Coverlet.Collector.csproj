@@ -23,4 +23,8 @@
     <ProjectReference Include="..\src\TravelItineraryWizard.csproj" />
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y $(ProjectDir)..\data\properties.jsonc $(ProjectDir)$(OutDir)&#xD;&#xA;xcopy /y $(ProjectDir)..\data\air_travel.jsonc $(ProjectDir)$(OutDir)&#xD;&#xA;" />
+  </Target>
+
 </Project>
