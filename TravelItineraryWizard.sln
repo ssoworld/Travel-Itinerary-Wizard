@@ -5,6 +5,36 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelItineraryWizard", "src\TravelItineraryWizard.csproj", "{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{19E9BE5C-2F9F-4039-BE41-C1E21B99482C}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\auto-approve.yml = .github\workflows\auto-approve.yml
+		.github\workflows\dotnet-desktop.yml = .github\workflows\dotnet-desktop.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".configurations", ".configurations", "{CF2731B3-1926-4E46-9BBE-4DC6AF33B1D5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		.releaserc = .releaserc
+		coverlet.runsettings = coverlet.runsettings
+		executetest.ps1 = executetest.ps1
+		package.json = package.json
+		renovate.json = renovate.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{8773E30C-8E8E-46E5-9B00-061CC857EEB8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "settings", "settings", "{04604228-0129-41CA-AEEE-910DC7CCFA1C}"
+	ProjectSection(SolutionItems) = preProject
+		data\air_travel.jsonc = data\air_travel.jsonc
+		postBuild\postbuild.bat = postBuild\postbuild.bat
+		data\properties.jsonc = data\properties.jsonc
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "XUnit.Coverlet.Collector", "XUnit.Coverlet.Collector\XUnit.Coverlet.Collector.csproj", "{7EDB92FB-59F1-43C8-8CBE-F06D520E996F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +45,16 @@ Global
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01B7DC75-936C-4C5B-B4DE-0F53903FA1D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7EDB92FB-59F1-43C8-8CBE-F06D520E996F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EDB92FB-59F1-43C8-8CBE-F06D520E996F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EDB92FB-59F1-43C8-8CBE-F06D520E996F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EDB92FB-59F1-43C8-8CBE-F06D520E996F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7EDB92FB-59F1-43C8-8CBE-F06D520E996F} = {8773E30C-8E8E-46E5-9B00-061CC857EEB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75DD4C71-57AA-4553-A163-47A21669F8EA}

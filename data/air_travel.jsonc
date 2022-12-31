@@ -1,0 +1,81 @@
+{
+   "airlines": [
+      "Delta",
+      "United",
+      "American",
+      "JetBlue",
+      "Hawaiian",
+      "Alaska"
+   ],
+   // generic class names only - refer to airline documentation for equivalent branding
+   "classes": [
+      "Economy",
+      "Economy Plus",
+      "Premium", // domestic first and International Premium economy
+      "Business", // any long haul
+      "First" // international only
+   ],
+   // Hub airlines prioritized.  Regional airports list those with easy direct flights
+   "Airports": [
+      {
+         "IATA": "ORD",
+         "name": "Chicago O'Hare",
+         "lead time": 90,
+         "parking": {
+            "premium daily": 42,
+            "economy daily": 22
+         },
+         "Airlines": [
+            "United",
+            "American",
+            "JetBlue",
+            "Alaska",
+            "Hawaiian"
+         ]
+      },
+      {
+         "IATA": "MDW",
+         "name": "Chicago Midway",
+         "lead time": 90,
+         "parking": {
+            "premium daily": 40,
+            "economy daily": 15
+         },
+         "Airlines": [
+            "Southwest"
+         ]
+      },
+      {
+         "IATA": "MSN",
+         "name": "Dane Co Regional",
+         "lead time": 90,
+         "parking": {
+            "premium daily": 10,
+            "economy daily": 6
+         },
+         "Airlines": [
+            "United", //ORD, DEN, EWR, IAD
+            "American", //DFW, CLT, ORD, PHX
+            "Delta", //DTW, ATL, MSP, DCA, LGA
+            "Frontier", // DEN
+            "Sun Country" // LAS, DFW, MCO, RSW
+         ]
+      },
+      {
+         "IATA": "MSP",
+         "name": "Minneapolis-St. Paul",
+         "lead time": 90,
+         "parking": {
+            "premium daily": 28, //Lindbergh
+            "economy daily": 21 //Humphrey
+         },
+         "Airlines": [
+            "United", //ORD, DEN, EWR, IAD
+            "American", //DFW, CLT, ORD, PHX
+            "Delta", //DTW, ATL, MSP, DCA, LGA
+            "Frontier", // DEN
+            "Sun Country" // LAS, DFW, MCO, RSW
+         ]
+      }
+   ]
+}

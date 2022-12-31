@@ -1,16 +1,16 @@
 {
-   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-   "extends": ["config:base", ":semanticCommitType(fix)"],
-   "semanticCommits": "enabled",
-   "packageRules": [
-     {
-       "matchPackagePatterns":[
-         "*"
-       ],
-       "matchUpdateTypes": ["minor", "patch"],
-       "automerge": true,
-       "groupName": "Minor and Patch dependencies",
-       "groupSlug": "all"
-     }
-   ]
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [ "config:base", ":semanticCommitType(fix)" ],
+  "packageRules": [
+    {
+      "automerge": true,
+      "groupName": "Minor and Patch dependencies",
+      "groupSlug": "all",
+      "matchPackagePatterns": [
+        "*"
+      ],
+      "matchUpdateTypes": [ "minor", "patch" ]
+    }
+  ],
+  "semanticCommits": "enabled"
 }
