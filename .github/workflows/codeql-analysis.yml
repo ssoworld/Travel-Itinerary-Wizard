@@ -25,7 +25,7 @@ env:
 jobs:
   analyze:
     name: Analyze
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       actions: read
       contents: read
@@ -72,6 +72,10 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+
+    - name: show output files before build
+      run: |
+        ls -R
 
     - name: Build the application
       run: dotnet build $env:Solution_Name
