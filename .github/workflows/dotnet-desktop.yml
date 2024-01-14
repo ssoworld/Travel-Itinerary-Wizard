@@ -50,7 +50,7 @@ jobs:
 
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        config: [Debug, Release]
         dotnet: [ '6.0.x', '7.0.x', '8.0.x']
 
     runs-on: windows-latest  # For a list of available runner types, refer to
@@ -78,7 +78,7 @@ jobs:
     - name: Build the application
       run: dotnet build $env:Solution_Name
       env:
-        Configuration: ${{ matrix.configuration }}
+        Configuration: ${{ matrix.config }}
 
     - name: show output files after build
       run: |
@@ -87,14 +87,14 @@ jobs:
     - name: archive the build output
       uses: actions/upload-artifact@v3
       with:
-        name: build_output_${{ matrix.dotnet }}
-        path: ./src/bin/${{ matrix.configuration }}
+        name: build_output_${{ matrix.config }}_${{ matrix.dotnet }}
+        path: ./src/bin/${{ matrix.config }}
 
   test:
     needs: build
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        config: [Debug, Release]
         dotnet: [ '6.0.x', '7.0.x', '8.0.x']
 
     runs-on: windows-latest  # For a list of available runner types, refer to
@@ -121,7 +121,7 @@ jobs:
     - name: Unarchive the build output
       uses: actions/download-artifact@v3
       with:
-        name: build_output_${{ matrix.dotnet }}
+        name: build_output_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./
 
     - name: show output files before test
@@ -148,14 +148,16 @@ jobs:
     - name: archive coverage file
       uses: actions/upload-artifact@v3
       with:
-        name: coverage_report_${{ matrix.dotnet }}
+        name: coverage_report_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./coverage.cobertura.xml
  
   coverage-report-md:
     needs: test
+    permissions:
+      pull-requests: write
     strategy:
       matrix:
-        configuration: [Debug, Release]
+        config: [Debug, Release]
         dotnet: [ '6.0.x', '7.0.x', '8.0.x']
 
     runs-on: ubuntu-latest  # For a list of available runner types, refer to
@@ -171,7 +173,6 @@ jobs:
     - name: checkout the repo
       uses: actions/checkout@v4
 
-
     - name: Set Node.js from .nvmrc
       uses: actions/setup-node@v4
       with:
@@ -180,7 +181,7 @@ jobs:
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
       with:
-        name: coverage_report_${{ matrix.dotnet }}
+        name: coverage_report_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./
 
     - name: Code Coverage Report
@@ -196,18 +197,23 @@ jobs:
         output: both
         thresholds: '60 80'
 
+    - name: show output files after report generation
+      run: |
+        ls -R
+
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
       with:
+        header: Code Coverage ${{ matrix.config }}_${{ matrix.dotnet }}
         recreate: true
-        path: code-coverage-results_${{ matrix.dotnet }}.md
+        path: code-coverage-results_${{ matrix.config }}_${{ matrix.dotnet }}.md
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     # - name: Restore the application
     #   run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
     #   env:
-    #     Configuration: ${{ matrix.configuration }}
+    #     Configuration: ${{ matrix.config }}
 
     # Decode the base 64 encoded pfx and save the Signing_Certificate
    #  - name: Decode the pfx
@@ -223,7 +229,7 @@ jobs:
    #      Appx_Bundle: Always
    #      Appx_Bundle_Platforms: x86|x64
    #      Appx_Package_Build_Mode: StoreUpload
-   #      Configuration: ${{ matrix.configuration }}
+   #      Configuration: ${{ matrix.config }}
 
     # Remove the pfx
    #  - name: Remove the pfx
