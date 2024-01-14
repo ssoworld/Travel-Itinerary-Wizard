@@ -84,7 +84,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: workspace_${{ matrix.dotnet }}
-        path: ${{github.workspace}}
+        path: ./bin/${{ matrix.configuration }}
 
   test:
     needs: build
@@ -103,6 +103,16 @@ jobs:
       # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: ${{ matrix.dotnet }}
 
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
@@ -161,7 +171,7 @@ jobs:
     - name: Set Node.js from .nvmrc
       uses: actions/setup-node@v4
       with:
-        node-version-file: '.nvmrc'
+        node-version-file: 'lts/*'
 
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
