@@ -80,7 +80,11 @@ jobs:
       env:
         Configuration: ${{ matrix.configuration }}
 
-    - name: archive workspace for testing
+    - name: show output files after build
+      run: |
+        ls -R
+
+    - name: archive the build output
       uses: actions/upload-artifact@v3
       with:
         name: build_output_${{ matrix.dotnet }}
@@ -114,13 +118,13 @@ jobs:
       with:
         dotnet-version: ${{ matrix.dotnet }}
 
-    - name: Unarchive the workspace
+    - name: Unarchive the build output
       uses: actions/download-artifact@v3
       with:
         name: build_output_${{ matrix.dotnet }}
         path: ./
 
-    - name: show output files
+    - name: show output files before test
       run: |
         ls -R
 
@@ -137,7 +141,7 @@ jobs:
          reports: coverage.cobertura.xml
          targetdir: coveragereport
 
-    - name: show output files
+    - name: show output files after test
       run: |
         ls -R
 
@@ -171,7 +175,7 @@ jobs:
     - name: Set Node.js from .nvmrc
       uses: actions/setup-node@v4
       with:
-        node-version-file: 'lts/*'
+        node-version: 'lts/*'
 
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
@@ -197,7 +201,7 @@ jobs:
       if: github.event_name == 'pull_request'
       with:
         recreate: true
-        path: code-coverage-results.md
+        path: code-coverage-results_${{ matrix.dotnet }}.md
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     # - name: Restore the application
