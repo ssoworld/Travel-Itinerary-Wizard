@@ -215,8 +215,8 @@ jobs:
       with:
         header: Code Coverage ${{ matrix.config }}_${{ matrix.dotnet }}
         recreate: true
+        message: Coverage results for ${{ matrix.config }}, ${{ matrix.dotnet }}
         path: code-coverage-results_${{ matrix.config }}_${{ matrix.dotnet }}.md
-        message: ${{ matrix.config }}_${{ matrix.dotnet }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     # - name: Restore the application
