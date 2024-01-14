@@ -82,7 +82,7 @@ jobs:
 
     # Execute all unit tests in the solution, collecting code coverage
     - name: Execute unit tests
-      run: dotnet test $env:Solution_Name --configuration Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+      run: dotnet test $env:Test_Project_Base --no-build --configuration Release --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
 
     - name: Copy Coverage To Predictable Location
       run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
@@ -101,7 +101,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: coverage report
-        path: ./coveragerport   
+        path: ./coverage.cobertura.xml
  
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
