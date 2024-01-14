@@ -44,6 +44,12 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
+  Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+  # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+  # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+
 jobs:
 
   build:
@@ -51,16 +57,11 @@ jobs:
     strategy:
       matrix:
         config: [Debug, Release]
-        dotnet: [ '6.0.x', '7.0.x', '8.0.x']
+        dotnet: ['6.0.x', '7.0.x', '8.0.x']
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
-    env:
-      Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: Checkout
@@ -95,16 +96,16 @@ jobs:
     strategy:
       matrix:
         config: [Debug, Release]
-        dotnet: [ '6.0.x', '7.0.x', '8.0.x']
+        dotnet: ['6.0.x', '7.0.x', '8.0.x']
 
     runs-on: windows-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
-    env:
-      Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+    # env:
+    #   Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
+    #   Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+    #   # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+    #   # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: Checkout
@@ -135,11 +136,17 @@ jobs:
     - name: Copy Coverage To Predictable Location
       run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
 
-    - name: HTML Report
+    - name: Generate HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
          reports: coverage.cobertura.xml
          targetdir: coveragereport
+    
+    - name: Archive HTML coverage report
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage_html_report_${{ matrix.config }}_${{ matrix.dotnet }}
+        path: ./coveragereport
 
     - name: show output files after test
       run: |
@@ -163,12 +170,12 @@ jobs:
     runs-on: ubuntu-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
-    env:
-      Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
-      Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      Code_Cov_Report_File: code-coverage-results                 # standard name for the output of Code Coverage report
-      # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
-      # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+    # env:
+    #   Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
+    #   Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+    #   Code_Cov_Report_File: code-coverage-results                 # standard name for the output of Code Coverage report
+    #   # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+    #   # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
     - name: checkout the repo
@@ -177,7 +184,7 @@ jobs:
     - name: Set Node.js from .nvmrc
       uses: actions/setup-node@v4
       with:
-        node-version: 'lts/*'
+        node-version-file: '.nvmrc'
 
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
@@ -209,7 +216,7 @@ jobs:
     - name: remove the old file
       run: |
         rm -f code-coverage-results.md
-        
+
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
@@ -217,6 +224,7 @@ jobs:
         header: Code Coverage ${{ matrix.config }}_${{ matrix.dotnet }}
         recreate: true
         path: code-coverage-results_${{ matrix.config }}_${{ matrix.dotnet }}.md
+        message: ${{ matrix.config }}_${{ matrix.dotnet }}
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     # - name: Restore the application
