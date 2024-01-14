@@ -83,8 +83,8 @@ jobs:
     - name: archive workspace for testing
       uses: actions/upload-artifact@v3
       with:
-        name: workspace_${{ matrix.dotnet }}
-        path: ./bin/${{ matrix.configuration }}
+        name: build_output_${{ matrix.dotnet }}
+        path: ./src/bin/${{ matrix.configuration }}
 
   test:
     needs: build
@@ -117,7 +117,7 @@ jobs:
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
       with:
-        name: workspace_${{ matrix.dotnet }}
+        name: build_output_${{ matrix.dotnet }}
         path: ./
 
     - name: show output files
