@@ -93,6 +93,16 @@ jobs:
          reports: coverage.cobertura.xml
          targetdir: coveragereport
 
+    - name: show output files
+      run: |
+        ls -R
+
+    - name: archive .dist directory
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage report
+        path: ./coveragerport
+ 
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
