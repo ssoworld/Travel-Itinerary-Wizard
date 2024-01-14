@@ -82,18 +82,21 @@ jobs:
 
     # Execute all unit tests in the solution, collecting code coverage
     - name: Execute unit tests
-      run: dotnet test --collect:"XPlat Code Coverage" --settings coverlet.runsettings /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura
+      run: dotnet test src/Example.sln --configuration Release --no-build --verbosity normal --collect:"XPlat Code Coverage" --results-directory ./coverage
+
+    - name: Copy Coverage To Predictable Location
+      run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
 
     - name: HTML Report
       uses: danielpalme/ReportGenerator-GitHub-Action@5.1.13
       with:
-         reports: ..\XUnit.Coverlet.Collector\TestResults\**\coverage.cobertura.xml
+         reports: coverage.cobertura.xml
          targetdir: coveragereport
 
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
       with:
-        filename: XUnit.Coverlet.Collector/**/coverage.cobertura.xml
+        filename: coverage.cobertura.xml
         badge: true
         fail_below_min: true
         format: markdown
