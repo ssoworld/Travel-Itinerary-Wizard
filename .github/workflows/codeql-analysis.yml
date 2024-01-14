@@ -19,6 +19,8 @@ on:
     branches: [ master, dev ]
   schedule:
     - cron: '31 7 * * 3'
+env:
+  Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
 
 jobs:
   analyze:
@@ -53,8 +55,8 @@ jobs:
 
     # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
     # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v3
+    # - name: Autobuild
+    #   uses: github/codeql-action/autobuild@v3
 
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
@@ -66,6 +68,15 @@ jobs:
     #- run: |
     #   make bootstrap
     #   make release
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
 
+    - name: Build the application
+      run: dotnet build $env:Solution_Name
+      env:
+        Configuration: Release
+ 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
