@@ -101,7 +101,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: coverage report
-        path: ./coveragerport
+        path: ./coveragerport   
  
     - name: Code Coverage Report
       uses: irongut/CodeCoverageSummary@v1.3.0
