@@ -166,6 +166,7 @@ jobs:
     env:
       Solution_Name: TravelItineraryWizard.sln                    # Replace with your solution name, i.e. MyWpfApp.sln.
       Test_Project_Base: XUnit.Coverlet.Collector                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      Code_Cov_Report_File: code-coverage-results                 # standard name for the output of Code Coverage report
       # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
@@ -201,6 +202,14 @@ jobs:
       run: |
         ls -R
 
+    - name: rename file for the build
+      run: |
+        mv code-coverage-results.md code-coverage-results_${{ matrix.config }}_${{ matrix.dotnet }}.md
+
+    - name: remove the old file
+      run: |
+        rm -f code-coverage-results.md
+        
     - name: Add Coverage PR Comment
       uses: marocchino/sticky-pull-request-comment@v2
       if: github.event_name == 'pull_request'
