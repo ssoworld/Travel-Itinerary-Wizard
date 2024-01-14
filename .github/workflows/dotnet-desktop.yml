@@ -181,11 +181,6 @@ jobs:
     - name: checkout the repo
       uses: actions/checkout@v4
 
-    - name: Set Node.js from .nvmrc
-      uses: actions/setup-node@v4
-      with:
-        node-version-file: '.nvmrc'
-
     - name: Unarchive the workspace
       uses: actions/download-artifact@v3
       with:
@@ -212,9 +207,6 @@ jobs:
     - name: rename file for the build
       run: |
         mv code-coverage-results.md code-coverage-results_${{ matrix.config }}_${{ matrix.dotnet }}.md
-
-    - name: remove the old file
-      run: |
         rm -f code-coverage-results.md
 
     - name: Add Coverage PR Comment
