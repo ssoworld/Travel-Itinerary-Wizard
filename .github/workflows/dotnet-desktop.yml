@@ -158,7 +158,7 @@ jobs:
         configuration: [Debug, Release]
         dotnet: [ '6.0.x', '7.0.x', '8.0.x']
 
-    runs-on: windows-latest  # For a list of available runner types, refer to
+    runs-on: ubuntu-latest  # For a list of available runner types, refer to
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
