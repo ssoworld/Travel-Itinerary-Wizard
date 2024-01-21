@@ -84,7 +84,7 @@ jobs:
         ls -R
 
     - name: archive the build output
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: build_output_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./src/bin/${{ matrix.config }}
