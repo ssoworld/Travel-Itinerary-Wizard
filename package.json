@@ -12,6 +12,6 @@
   "private": true,
   "devDependencies": {
     "@semantic-release/github": "10.0.3",
-    "semantic-release": "23.0.8"
+    "semantic-release": "23.1.1"
   }
 }
