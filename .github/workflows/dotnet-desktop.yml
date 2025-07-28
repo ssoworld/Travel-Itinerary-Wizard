@@ -135,7 +135,7 @@ jobs:
       run: cp coverage/**/coverage.cobertura.xml coverage.cobertura.xml
 
     - name: Generate HTML Report
-      uses: danielpalme/ReportGenerator-GitHub-Action@v5.4.10
+      uses: danielpalme/ReportGenerator-GitHub-Action@5.4.11
       with:
          reports: coverage.cobertura.xml
          targetdir: coveragereport
