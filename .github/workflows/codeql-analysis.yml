@@ -34,7 +34,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        language: [ 'csharp' ]
+        language: [ csharp ]
         # CodeQL supports [ 'cpp', 'csharp', 'go', 'java', 'javascript', 'python', 'ruby' ]
         # Learn more about CodeQL language support at https://git.io/codeql-language-support
 
@@ -53,11 +53,6 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    # Autobuild attempts to build any compiled languages  (C/C++, C#, or Java).
-    # If this step fails, then you should remove it and run the build manually (see below)
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v4
-
     # ℹ️ Command-line programs to run using the OS shell.
     # 📚 https://git.io/JvXDl
 
@@ -68,19 +63,19 @@ jobs:
     #- run: |
     #   make bootstrap
     #   make release
-    # - name: Install .NET Core
-    #   uses: actions/setup-dotnet@v4
-    #   with:
-    #     dotnet-version: 8.0.x
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.x
 
-    # - name: show output files before build
-    #   run: |
-    #     ls -R
+    - name: show output files before build
+      run: |
+        ls -R
 
-    # - name: Build the application
-    #   run: dotnet build $env:Solution_Name
-    #   env:
-    #     Configuration: Release
+    - name: Build the application
+      run: dotnet build $env:TravelItineraryWizard.sln
+      env:
+        Configuration: Release
  
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v4
