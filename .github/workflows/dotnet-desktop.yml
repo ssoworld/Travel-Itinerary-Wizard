@@ -84,7 +84,7 @@ jobs:
         ls -R
 
     - name: archive the build output
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: build_output_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./src/bin/${{ matrix.config }}/
@@ -118,7 +118,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet }}
 
     - name: Unarchive the build output
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: build_output_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./
@@ -141,7 +141,7 @@ jobs:
          targetdir: coveragereport
     
     - name: Archive HTML coverage report
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: coverage_html_report_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./coveragereport/
@@ -151,7 +151,7 @@ jobs:
         ls -R
 
     - name: archive coverage file
-      uses: actions/upload-artifact@v5
+      uses: actions/upload-artifact@v6
       with:
         name: coverage_report_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./coverage.cobertura.xml
@@ -180,7 +180,7 @@ jobs:
       uses: actions/checkout@v6
 
     - name: Unarchive the workspace
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: coverage_report_${{ matrix.config }}_${{ matrix.dotnet }}
         path: ./
